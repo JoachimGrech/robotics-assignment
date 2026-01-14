@@ -17,6 +17,7 @@ ament_export_dependencies(rosidl_default_runtime)
 
 install(PROGRAMS
   scripts/action_server.py
+  scripts/sortabot_env.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

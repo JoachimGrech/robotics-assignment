@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Simple Arm Macro -->
+  <xacro:macro name="simple_arm" params="prefix parent x_offset y_offset color">
+    
+    <link name="${prefix}_arm_base">
+      <visual>
+        <geometry>
+          <cylinder radius="0.04" length="0.05"/>
+        </geometry>
+        <material name="${color}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.04" length="0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}_base_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${prefix}_arm_base"/>
+      <origin xyz="${x_offset} ${y_offset} 0.1" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Link 1 -->
+    <link name="${prefix}_link1">
+      <visual>
+        <origin xyz="0 0 0.15" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.04 0.3"/>
+        </geometry>
+        <material name="${color}"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.15" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.04 0.3"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}_joint1" type="revolute">
+      <parent link="${prefix}_arm_base"/>
+      <child link="${prefix}_link1"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-1.57" upper="1.57" effort="10.0" velocity="1.0"/>
+    </joint>
+
+    <!-- Hand / End Effector -->
+    <link name="${prefix}_hand">
+      <visual>
+        <geometry>
+          <sphere radius="0.05"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="0.05"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <!-- Weight Sensor (Virtual Frame) -->
+    <link name="${prefix}_weight_sensor"/>
+
+    <joint name="${prefix}_hand_joint" type="fixed">
+      <parent link="${prefix}_link1"/>
+      <child link="${prefix}_hand"/>
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}_sensor_joint" type="fixed">
+      <parent link="${prefix}_hand"/>
+      <child link="${prefix}_weight_sensor"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

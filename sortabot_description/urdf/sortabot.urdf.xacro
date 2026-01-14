@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sortabot">
+
+  <xacro:include filename="$(find sortabot_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find sortabot_description)/urdf/sortabot_base.xacro" />
+  <xacro:include filename="$(find sortabot_description)/urdf/sortabot_arms.xacro" />
+  <xacro:include filename="$(find sortabot_description)/urdf/sortabot_sensors.xacro" />
+
+  <!-- Instantiate Two Arms -->
+  <xacro:simple_arm prefix="left" parent="base_link" x_offset="0.0" y_offset="0.12" color="white"/>
+  <xacro:simple_arm prefix="right" parent="base_link" x_offset="0.0" y_offset="-0.12" color="white"/>
+
+  <!-- Instantiate Sensors -->
+  <xacro:add_sensors parent="base_link"/>
+
+</robot>
