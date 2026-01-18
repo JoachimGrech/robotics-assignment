@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dumbbell_pure">
+
+  <link name="base_link"/>
+
+  <link name="handle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.15" radius="0.015"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="left_w">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="right_w">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.06"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="root_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="handle"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint_left" type="fixed">
+    <parent link="handle"/>
+    <child link="left_w"/>
+    <origin xyz="-0.095 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint_right" type="fixed">
+    <parent link="handle"/>
+    <child link="right_w"/>
+    <origin xyz="0.095 0 0" rpy="0 0 0"/>
+  </joint>
+
+</robot>
