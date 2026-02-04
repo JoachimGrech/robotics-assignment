@@ -137,7 +137,7 @@ class WorldManager(Node):
                 try:
                     res = fut.result()
                     if hasattr(res, 'success') and res.success:
-                        self.get_logger().info(f"✓ Successfully spawned {name}")
+                        self.get_logger().info(f"Ã¢Å“â€œ Successfully spawned {name}")
                         return True
                     else:
                         self.get_logger().warn(f"Spawn response indicates failure for {name}")
@@ -146,7 +146,7 @@ class WorldManager(Node):
                     self.get_logger().error(f"Exception in spawn for {name}: {e}")
                     return False
         
-        self.get_logger().error(f"✗ Spawn call timed out for {name} after {timeout}s")
+        self.get_logger().error(f"Ã¢Å“â€” Spawn call timed out for {name} after {timeout}s")
         return False
 
     def spawn_test_scene(self):

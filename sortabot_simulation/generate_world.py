@@ -151,7 +151,7 @@ if "</world>" in world_content:
         with open(world_path, "w") as f:
             f.write(new_world)
         
-        print("✓ World file updated with 8 dumbbells!")
+        print("Ã¢Å“â€œ World file updated with 8 dumbbells!")
         print("  Red light (8kg total) at (2.0, 3.0)")
         print("  Red heavy (16kg total) at (-2.0, 5.0)")
         print("  Blue light (6kg total) at (-3.0, 1.5)")
