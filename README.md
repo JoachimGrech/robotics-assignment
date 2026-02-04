@@ -4,7 +4,7 @@ This repository contains the code and simulation environment for the Sort-a-bot 
 
 ## 📄 Documentation
 For the full project report, team members, and execution instructions, please see:
-**[Final_Documentation.md](./Final_Documentation.md)**
+**[Sort-a-bot_Final_Documentation.docx](./Sort-a-bot_Final_Documentation.docx)**
 
 ---
 *B.Sc. Artificial Intelligence | ARI3215*
