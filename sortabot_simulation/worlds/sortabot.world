@@ -1,0 +1,1058 @@
+<?xml version="1.0" ?>
+<sdf version="1.7"> </sdf>
+  <world name="sortabot_world">
+    <light type="directional" name="sun">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1.0 1.0 0.9 1</diffuse>
+      <specular>0.5 0.5 0.5 1</specular>
+      <direction>0.1 0.1 -1</direction>
+    </light>
+
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <gravity>0 0 -9.81</gravity>
+    </physics>
+
+    <model name="ground">
+      <static>true</static>
+      <link name="link">
+        <pose>0 0 -0.05 0 0 0</pose>
+        <collision name="collision">
+          <geometry><box><size>30 30 0.1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>30 30 0.1</size></box></geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 14x14 arena walls -->
+    <model name="wall_north">
+      <static>true</static>
+      <link name="link">
+        <pose>0 7 0.5 0 0 0</pose>  <!-- Y position: 14/2 = 7 -->
+        <collision name="col">
+          <geometry><box><size>14 0.2 1.0</size></box></geometry>  <!-- Width: 14 -->
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>14 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.2 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>true</static>
+      <link name="link">
+        <pose>0 -7 0.5 0 0 0</pose>  <!-- Y position: -7 -->
+        <collision name="col">
+          <geometry><box><size>14 0.2 1.0</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>14 0.2 1.0</size></box></geometry>
+          <material><ambient>0.2 0.8 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <link name="link">
+        <pose>7 0 0.5 0 0 0</pose>  <!-- X position: 7 -->
+        <collision name="col">
+          <geometry><box><size>0.2 14 1.0</size></box></geometry>  <!-- Length: 14 -->
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 14 1.0</size></box></geometry>
+          <material><ambient>0.2 0.2 0.8 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <link name="link">
+        <pose>-7 0 0.5 0 0 0</pose>  <!-- X position: -7 -->
+        <collision name="col">
+          <geometry><box><size>0.2 14 1.0</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>0.2 14 1.0</size></box></geometry>
+          <material><ambient>0.8 0.8 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+    
+<!-- RANDOM WALL OBSTACLES -->
+<model name="wall_obs_1">
+  <static>true</static>
+  <link name="link">
+    <pose>-3 2 0.5 0 0 0.3</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>4 0.2 1.0</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>4 0.2 1.0</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.3 0.3 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="wall_obs_2">
+  <static>true</static>
+  <link name="link">
+    <pose>4 -2 0.5 0 0 -0.2</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>3.5 0.2 1.0</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>3.5 0.2 1.0</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.3 0.7 0.3 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="wall_obs_3">
+  <static>true</static>
+  <link name="link">
+    <pose>-5 -3 0.5 0 0 0.5</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>3 0.2 1.0</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>3 0.2 1.0</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.3 0.3 0.7 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="wall_obs_4">
+  <static>true</static>
+  <link name="link">
+    <pose>2 4 0.5 0 0 -0.4</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>3 0.2 1.0</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>3 0.2 1.0</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.2 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="wall_obs_5">
+  <static>true</static>
+  <link name="link">
+    <pose>0 -4 0.5 0 0 0.7</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>4 0.2 1.0</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>4 0.2 1.0</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.6 0.3 0.6 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<!-- RANDOM BOX OBSTACLES -->
+<model name="box_obs_1">
+  <static>true</static>
+  <link name="link">
+    <pose>3 3 0.25 0 0 0</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>1 1 0.5</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>1 1 0.5</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.9 0.5 0.2 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="box_obs_2">
+  <static>true</static>
+  <link name="link">
+    <pose>-2 5 0.25 0 0 0.2</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>1.5 0.8 0.5</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>1.5 0.8 0.5</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.2 0.9 0.5 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="box_obs_3">
+  <static>true</static>
+  <link name="link">
+    <pose>5 -1 0.25 0 0 0.1</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>1 2 0.5</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>1 2 0.5</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.5 0.2 0.9 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="box_obs_4">
+  <static>true</static>
+  <link name="link">
+    <pose>-4 1 0.25 0 0 -0.3</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>1.2 1.2 0.5</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>1.2 1.2 0.5</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.3 0.6 0.9 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+<model name="box_obs_5">
+  <static>true</static>
+  <link name="link">
+    <pose>0 2 0.25 0 0 0.5</pose>
+    <collision name="col">
+      <geometry>
+        <box>
+          <size>0.8 0.8 0.5</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="vis">
+      <geometry>
+        <box>
+          <size>0.8 0.8 0.5</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.9 0.9 0.3 1</ambient>
+      </material>
+    </visual>
+  </link>
+</model>
+
+    <!-- Robot will be spawned via launch file -->
+    
+
+    <!-- DUMBBELLS (generated) -->
+    <model name="dumbbell_red_0">
+      <pose>2.0 3.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>4.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>4.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_red_1">
+      <pose>-2.0 5.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>8.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>8.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_blue_2">
+      <pose>-3.0 1.5 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>3.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>3.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_blue_3">
+      <pose>4.0 -1.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>9.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>9.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_green_4">
+      <pose>1.0 -4.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>5.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>5.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_green_5">
+      <pose>-4.0 -3.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>10.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>10.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_yellow_6">
+      <pose>5.0 2.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>3.5</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>3.5</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+    <model name="dumbbell_yellow_7">
+      <pose>-1.0 -5.0 0.03 0 1.5708 0</pose>
+      <link name="handle">
+        <pose>0 0 0 0 1.5708 0</pose>
+        <visual name="handle_visual">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0.1 0.1 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="handle_collision">
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.015</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name="left_weight">
+        <pose>-0.095 0 0 0 1.5708 0</pose>
+        <visual name="left_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>7.0</mass>
+        </inertial>
+      </link>
+      
+      <link name="right_weight">
+        <pose>0.095 0 0 0 1.5708 0</pose>
+        <visual name="right_visual">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_collision">
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.06</radius>
+            </cylinder>
+          </geometry>
+        </collision>
+        <inertial>
+          <mass>7.0</mass>
+        </inertial>
+      </link>
+      
+      <joint name="left_joint" type="fixed">
+        <parent>handle</parent>
+        <child>left_weight</child>
+      </joint>
+      
+      <joint name="right_joint" type="fixed">
+        <parent>handle</parent>
+        <child>right_weight</child>
+      </joint>
+    </model>
+
+  </world>
