@@ -4,57 +4,55 @@ from std_msgs.msg import String
 import random
 
 class SmartDumbbell(Node):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__('dumbbell_driver')
-        
-        self.available_colors = ['red', 'blue', 'green', 'yellow']
-        
-        self.MAX_WEIGHT_LIMIT = 100.0 
-        self.total_weight_spawned = 0.0
-        
-        self.publisher_ = self.create_publisher(String, 'dumbbell_info', 10)
-        
-        self.create_timer(1.0, self.broadcast_status)
 
-        print(f"Max Capacity: {self.MAX_WEIGHT_LIMIT} kg")
+        # Colors must match the keys in the spawner's color_map
+        self.available_colors = ['red', 'blue', 'green', 'yellow']
+
+        self.max_weight_limit = 100.0
+        self.total_weight_spawned = 0.0
+
+        # Publisher: sends "color,weight"
+        self.publisher_ = self.create_publisher(String, 'dumbbell_info', 10)
+
+        self.get_logger().info(f'Dumbbell Driver Started. Max Capacity: {self.max_weight_limit} kg')
+        
+        # Spawn the first one immediately
         self.spawn_dumbbell()
 
-    def spawn_dumbbell(self):
-        if self.total_weight_spawned >= self.MAX_WEIGHT_LIMIT:
-            print("Weight limit reached")
-            print(f"Total Spawned: {self.total_weight_spawned:.2f} / {self.MAX_WEIGHT_LIMIT} kg")
+    def spawn_dumbbell(self) -> None:
+        """Create a new dumbbell, publish msg, schedule next."""
+        if self.total_weight_spawned >= self.max_weight_limit:
+            self.get_logger().info('Max weight limit reached. Stopping generation.')
             return
 
+        # Randomly choose attributes
         new_color = random.choice(self.available_colors)
-        new_weight = random.randint(5, 18)
+        new_weight = random.randint(5, 15)  # Random weight between 5kg and 15kg
 
-        self.color = new_color
-        self.weight = new_weight
         self.total_weight_spawned += new_weight
 
-        print(f"New Dumbbell Spawned:")
-        print(f"Colour: {self.color.upper()}")
-        print(f"Weight: {self.weight} kg")
-        print(f"Total: {self.total_weight_spawned:.2f} kg so far")
+        # Log info
+        self.get_logger().info(
+            f'Generating {new_color.upper()} dumbbell ({new_weight}kg). Total: {self.total_weight_spawned}kg'
+        )
 
-        next_interval = random.randint(15, 60)
-        print(f"Next item arriving in {next_interval} seconds")
-        
-        self.spawn_timer = self.create_timer(next_interval, self.timer_callback)
+        # Publish the command to the spawner
+        msg = String()
+        msg.data = f'{new_color},{new_weight}'
+        self.publisher_.publish(msg)
 
-    def timer_callback(self):
+        # Schedule the next spawn (e.g., between 5 and 10 seconds)
+        next_interval = random.randint(5, 10)
+        self.spawn_timer = self.create_timer(float(next_interval), self.timer_callback)
+
+    def timer_callback(self) -> None:
+        """One-shot timer fired."""
         self.spawn_timer.cancel()
         self.spawn_dumbbell()
 
-    def broadcast_status(self):
-        if self.total_weight_spawned == 0.0:
-            return
-            
-        msg = String()
-        msg.data = f"{self.color},{self.weight}"
-        self.publisher_.publish(msg)
-
-def main(args=None):
+def main(args=None) -> None:
     rclpy.init(args=args)
     node = SmartDumbbell()
     try:
