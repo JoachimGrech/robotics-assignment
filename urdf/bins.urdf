@@ -1,0 +1,230 @@
+<?xml version="1.0" ?>
+<robot name="sorting_bins">
+
+  <material name="Red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="Blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="Green">
+    <color rgba="0 1 0 1"/>
+  </material>
+  <material name="Yellow">
+    <color rgba="1 1 0 1"/>
+  </material>
+
+  <link name="world"/>
+
+  <link name="bin_red_base">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+      <material name="Red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+      <material name="Red"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_bin_red" type="fixed">
+    <parent link="world"/>
+    <child link="bin_red_base"/>
+    <origin xyz="5.0 2.25 0.025" rpy="0 0 3.14159"/>
+  </joint>
+  
+  <gazebo reference="bin_red_base"><material>Gazebo/Red</material></gazebo>
+
+
+  <link name="bin_blue_base">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_bin_blue" type="fixed">
+    <parent link="world"/>
+    <child link="bin_blue_base"/>
+    <origin xyz="5.0 0.75 0.025" rpy="0 0 3.14159"/>
+  </joint>
+
+  <gazebo reference="bin_blue_base"><material>Gazebo/Blue</material></gazebo>
+
+
+  <link name="bin_green_base">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+      <material name="Green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+      <material name="Green"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_bin_green" type="fixed">
+    <parent link="world"/>
+    <child link="bin_green_base"/>
+    <origin xyz="5.0 -0.75 0.025" rpy="0 0 3.14159"/>
+  </joint>
+
+  <gazebo reference="bin_green_base"><material>Gazebo/Green</material></gazebo>
+
+
+  <link name="bin_yellow_base">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="5.0"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+      <material name="Yellow"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry><box size="0.75 0.75 0.05"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+      <material name="Yellow"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.35 0 0.5"/>
+      <geometry><box size="0.05 0.75 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Yellow"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+      <material name="Yellow"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.35 0.5"/>
+      <geometry><box size="0.65 0.05 1.0"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_bin_yellow" type="fixed">
+    <parent link="world"/>
+    <child link="bin_yellow_base"/>
+    <origin xyz="5.0 -2.25 0.025" rpy="0 0 3.14159"/>
+  </joint>
+
+  <gazebo reference="bin_yellow_base"><material>Gazebo/Yellow</material></gazebo>
+
+</robot>
