@@ -50,6 +50,7 @@ setup(
             'robot_controller   = sortabot.robot_controller:main',
             'world_manager      = sortabot.world_manager:main',
             'sortabot_action_server = sortabot.action_server:main',
+            'sortabot_vision        = sortabot.sortabot_vision:main',
         ],
     },
 )
