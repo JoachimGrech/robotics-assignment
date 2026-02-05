@@ -1,0 +1,9 @@
+# Goal
+string arm_side
+string bin_color
+---
+# Result
+bool success
+---
+# Feedback
+string status

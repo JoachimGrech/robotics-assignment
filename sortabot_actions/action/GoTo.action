@@ -1,0 +1,11 @@
+# Goal: Target location
+float32 x
+float32 y
+float32 theta
+---
+# Result: Success status
+bool success
+string message
+---
+# Feedback: Current status
+float32 distance_to_goal

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="childabot">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.4 0.35 0.2"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.4 0.35 0.2"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

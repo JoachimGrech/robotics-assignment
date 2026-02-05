@@ -1,0 +1,9 @@
+# Goal
+float32 timeout # Maximum time to explore
+---
+# Result
+bool success
+int32 areas_discovered
+---
+# Feedback
+float32 time_remaining
