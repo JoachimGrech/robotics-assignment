@@ -1,0 +1,10 @@
+# Goal
+string arm_side # 'left', 'right', or 'both'
+string object_id
+---
+# Result
+bool success
+string message
+---
+# Feedback
+string status

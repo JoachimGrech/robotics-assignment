@@ -11,6 +11,11 @@ find_package(action_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/GoTo.action"
+  "action/GraspObject.action"
+  "action/WeighObject.action"
+  "action/DepositObject.action"
+  "action/Explore.action"
+  "action/MarkLocation.action"
 )
 
 ament_export_dependencies(rosidl_default_runtime)
@@ -18,6 +23,8 @@ ament_export_dependencies(rosidl_default_runtime)
 install(PROGRAMS
   scripts/action_server.py
   scripts/sortabot_env.py
+  scripts/bin_manager.py
+  scripts/dumbbell_driver.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

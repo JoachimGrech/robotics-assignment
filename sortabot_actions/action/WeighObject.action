@@ -1,0 +1,9 @@
+# Goal
+string arm_side
+---
+# Result
+float32 weight
+bool success
+---
+# Feedback
+float32 current_reading

@@ -1,0 +1,11 @@
+# Goal
+string type # 'object' or 'bin'
+string label # e.g., 'red'
+float32 x
+float32 y
+---
+# Result
+bool success
+---
+# Feedback
+string status
